@@ -4,3 +4,4 @@ Integrantes
 
 -Adriana Valeria Moreno Zetino mz21014
 -Gerson Saul Jimenez Caceres JC21002
+-Jorge Ernesto Lopez Rodriguez LR22016 
