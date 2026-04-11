@@ -1,0 +1,13 @@
+src/
+ ├── controller/
+ ├── service/
+ ├── repository/
+ ├── entity/
+ ├── dto/
+ ├── config/
+ └── resources/
+      └── schema.sql
+
+git init
+git add .
+git commit -m "Primer commit - proyecto N capas"
