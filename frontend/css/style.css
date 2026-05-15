@@ -115,3 +115,18 @@ input {
         font-size: 36px;
     }
 }
+.editar {
+    background-color: #f59e0b;
+}
+
+.editar:hover {
+    background-color: #d97706;
+}
+
+.eliminar-btn {
+    background-color: #dc2626;
+}
+
+.eliminar-btn:hover {
+    background-color: #b91c1c;
+}
