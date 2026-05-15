@@ -20,33 +20,32 @@
     <section class="contenedor">
         <h2>Lista de Productos</h2>
 
-        <div class="producto">
+        <div class="producto" data-nombre="Laptop HP" data-precio="850" data-stock="10">
             <h3>Laptop HP</h3>
             <p>Precio: $850</p>
             <p>Stock: 10</p>
 
-            <button>Editar</button>
-            <button>Eliminar</button>
+            <button class="editar">Editar</button>
+            <button class="eliminar-btn">Eliminar</button>
         </div>
 
-        <div class="producto">
+        <div class="producto" data-nombre="Mouse Logitech" data-precio="25" data-stock="30">
             <h3>Mouse Logitech</h3>
             <p>Precio: $25</p>
             <p>Stock: 30</p>
 
-            <button>Editar</button>
-            <button>Eliminar</button>
+            <button class="editar">Editar</button>
+            <button class="eliminar-btn">Eliminar</button>
         </div>
 
-        <div class="producto">
+        <div class="producto" data-nombre="impresora canon" data-precio="230" data-stock="18">
             <h3>impresora canon</h3>
             <p>Precio: $230</p>
             <p>Stock: 18</p>
 
-            <button>Editar</button>
-            <button>Eliminar</button>
+            <button class="editar">Editar</button>
+            <button class="eliminar-btn">Eliminar</button>
         </div>
-
     </section>
 
     <!-- POST -->
@@ -54,11 +53,11 @@
         <h2>Agregar Producto</h2>
 
         <form>
-            <input type="text" placeholder="Nombre del producto">
+            <input id="editarNombre" type="text">
 
-            <input type="number" placeholder="Precio">
+            <input id="editarPrecio" type="number">
 
-            <input type="number" placeholder="Cantidad">
+            <input id="editarCantidad" type="number">
 
             <button type="submit">
                 Guardar Producto
@@ -90,9 +89,8 @@
 
         <p>¿Estás seguro de que deseas eliminar <strong>Laptop HP</strong> del inventario?</p>
 
-        <button type="button">Cancelar</button>
-        <button type="button">Eliminar</button>
-
+        <button type="button" id="btnCancelar">Cancelar</button>
+        <button type="button" class="eliminar-btn">Eliminar</button>
     </section>
 
 </main>
