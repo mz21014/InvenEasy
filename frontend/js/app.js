@@ -1,3 +1,4 @@
+/* BOTONES ELIMINAR */
 const botonesEliminar = document.querySelectorAll(".eliminar-btn");
 
 botonesEliminar.forEach((boton) => {
@@ -5,7 +6,7 @@ botonesEliminar.forEach((boton) => {
         alert("Producto eliminado correctamente");
     });
 });
-
+/* FORMULARIOS */
 const formularios = document.querySelectorAll("form");
 
 formularios.forEach((formulario) => {
@@ -15,6 +16,7 @@ formularios.forEach((formulario) => {
         alert("Operación realizada correctamente");
     });
 });
+/* BOTONES EDITAR */
 const botonesEditar = document.querySelectorAll(".editar");
 
 const editarNombre = document.getElementById("editarNombre");
@@ -33,6 +35,7 @@ botonesEditar.forEach((boton) => {
         alert("Datos cargados para edición");
     });
 });
+/* BOTÓN CANCELAR */
 const btnCancelar = document.getElementById("btnCancelar");
 
 btnCancelar.addEventListener("click", () => {

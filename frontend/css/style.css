@@ -1,3 +1,5 @@
+/* DISEÑO PARA CELULARES */
+/* Mobile First */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -97,7 +99,8 @@ input {
     font-size: 15px;
 }
 
-/* Versión Desktop */
+/* VERSIÓN TABLET Y COMPUTADORA */
+/* Responsive Design */
 @media (min-width: 768px) {
     main {
         max-width: 1000px;
