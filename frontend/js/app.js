@@ -3,7 +3,13 @@ const botonesEliminar = document.querySelectorAll(".eliminar-btn");
 
 botonesEliminar.forEach((boton) => {
     boton.addEventListener("click", () => {
-        alert("Producto eliminado correctamente");
+        const confirmar = confirm("¿Está seguro de que desea eliminar este producto?");
+
+        if (confirmar) {
+            alert("Producto eliminado correctamente");
+        } else {
+            alert("Eliminación cancelada");
+        }
     });
 });
 
