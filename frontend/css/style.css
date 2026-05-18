@@ -68,10 +68,13 @@ button {
     color: white;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 button:hover {
     background-color: #1d4ed8;
+    transform: scale(1.05);
+    opacity: 0.9;
 }
 
 .eliminar {
@@ -118,6 +121,7 @@ input {
         font-size: 36px;
     }
 }
+
 .editar {
     background-color: #f59e0b;
 }
