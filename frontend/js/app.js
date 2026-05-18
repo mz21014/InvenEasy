@@ -53,6 +53,15 @@ botonesEditar.forEach((boton) => {
         editarCantidad.value = producto.dataset.stock;
 
         alert("Datos cargados para edición");
+
+        // Desplazar suavemente al formulario de edición
+        editarNombre.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        // Colocar el cursor en el campo nombre
+        editarNombre.focus();
     });
 });
 
