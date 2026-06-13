@@ -2,43 +2,42 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './App.css'
 
-function App() {
+import ProductoForm from './components/ProductoForm'
+import ProductoCard from './components/ProductoCard'
 
+function App() {
   const [productos, setProductos] = useState([])
   const [nombre, setNombre] = useState('')
   const [descripcion, setDescripcion] = useState('')
   const [precio, setPrecio] = useState('')
   const [stock, setStock] = useState('')
+  const [productoEditando, setProductoEditando] = useState(null)
 
   useEffect(() => {
     obtenerProductos()
   }, [])
 
+  const limpiarFormulario = () => {
+    setNombre('')
+    setDescripcion('')
+    setPrecio('')
+    setStock('')
+    setProductoEditando(null)
+  }
+
   const obtenerProductos = async () => {
-
     try {
-
-      const response = await axios.get(
-        'http://localhost:8080/productos'
-      )
-
+      const response = await axios.get('http://localhost:8080/productos')
       setProductos(response.data)
-
     } catch (error) {
-
-      console.error(
-        'Error al obtener productos',
-        error
-      )
-
+      console.error('Error al obtener productos', error)
     }
   }
 
   const guardarProducto = async (e) => {
-
     e.preventDefault()
 
-    const nuevoProducto = {
+    const producto = {
       nombre,
       descripcion,
       precio: Number(precio),
@@ -46,145 +45,71 @@ function App() {
     }
 
     try {
-
-      await axios.post(
-        'http://localhost:8080/productos',
-        nuevoProducto
-      )
+      if (productoEditando) {
+        await axios.put(
+          `http://localhost:8080/productos/${productoEditando.id}`,
+          producto
+        )
+      } else {
+        await axios.post('http://localhost:8080/productos', producto)
+      }
 
       obtenerProductos()
-
-      setNombre('')
-      setDescripcion('')
-      setPrecio('')
-      setStock('')
-
+      limpiarFormulario()
     } catch (error) {
-
-      console.error(
-        'Error al guardar producto',
-        error
-      )
-
+      console.error('Error al guardar producto', error)
     }
   }
 
+  const editarProducto = (producto) => {
+    setProductoEditando(producto)
+    setNombre(producto.nombre)
+    setDescripcion(producto.descripcion)
+    setPrecio(producto.precio)
+    setStock(producto.stock)
+  }
+
   const eliminarProducto = async (id) => {
-
     try {
-
-      await axios.delete(
-        `http://localhost:8080/productos/${id}`
-      )
-
+      await axios.delete(`http://localhost:8080/productos/${id}`)
       obtenerProductos()
-
     } catch (error) {
-
-      console.error(
-        'Error al eliminar producto',
-        error
-      )
-
+      console.error('Error al eliminar producto', error)
     }
   }
 
   return (
-
     <div style={{ padding: '20px' }}>
-
       <h1>InvenEasy</h1>
 
-      <h2>Agregar Producto</h2>
+      <h2>
+        {productoEditando ? 'Editar Producto' : 'Agregar Producto'}
+      </h2>
 
-      <form onSubmit={guardarProducto}>
-
-        <input
-          type="text"
-          placeholder="Nombre"
-          value={nombre}
-          onChange={(e) =>
-            setNombre(e.target.value)
-          }
-          required
-        />
-
-        <input
-          type="text"
-          placeholder="Descripción"
-          value={descripcion}
-          onChange={(e) =>
-            setDescripcion(e.target.value)
-          }
-          required
-        />
-
-        <input
-          type="number"
-          placeholder="Precio"
-          value={precio}
-          onChange={(e) =>
-            setPrecio(e.target.value)
-          }
-          required
-        />
-
-        <input
-          type="number"
-          placeholder="Stock"
-          value={stock}
-          onChange={(e) =>
-            setStock(e.target.value)
-          }
-          required
-        />
-
-        <button type="submit">
-          Guardar
-        </button>
-
-      </form>
+      <ProductoForm
+        guardarProducto={guardarProducto}
+        nombre={nombre}
+        setNombre={setNombre}
+        descripcion={descripcion}
+        setDescripcion={setDescripcion}
+        precio={precio}
+        setPrecio={setPrecio}
+        stock={stock}
+        setStock={setStock}
+        productoEditando={productoEditando}
+        limpiarFormulario={limpiarFormulario}
+      />
 
       <h2>Lista de Productos</h2>
 
       {productos.map((producto) => (
-
-        <div
+        <ProductoCard
           key={producto.id}
-          style={{
-            border: '1px solid gray',
-            marginBottom: '10px',
-            padding: '10px',
-            borderRadius: '10px'
-          }}
-        >
-
-          <h3>{producto.nombre}</h3>
-
-          <p>
-            Descripción: {producto.descripcion}
-          </p>
-
-          <p>
-            Precio: ${producto.precio}
-          </p>
-
-          <p>
-            Stock: {producto.stock}
-          </p>
-
-          <button
-            onClick={() =>
-              eliminarProducto(producto.id)
-            }
-          >
-            Eliminar
-          </button>
-
-        </div>
-
+          producto={producto}
+          editarProducto={editarProducto}
+          eliminarProducto={eliminarProducto}
+        />
       ))}
-
     </div>
   )
 }
