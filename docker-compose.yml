@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:16
+    container_name: inventeasy_db
+    environment:
+      POSTGRES_DB: inventeasy
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: inventeasy_backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/inventeasy
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend-react
+    container_name: inventeasy_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
