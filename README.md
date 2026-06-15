@@ -107,6 +107,6 @@ http://localhost:8080/swagger-ui/index.html
 
 * Adriana Valeria Moreno Zetino — MZ21014
 * Gerson Saúl Jiménez Cáceres — JC21002
-* Jorge Ernesto López Rodríguez — LR22016
-* Esmeralda Elizabeth Muñoz Funes — MF23004
-* José Fernando González León — GL24021
+
+
+
